@@ -2,6 +2,7 @@ const bd = require('../models');
 const Event = db.events;
 
 const createEvent = (req, res)=>{
+  const newEvent = await Event(req.body);
   try{
   const  = await Event
   res.status(200).send();
