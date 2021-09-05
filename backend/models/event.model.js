@@ -1,4 +1,4 @@
-module.exports = mopngoose =>{
+module.exports = mongoose =>{
   const Event = mongoose.model(
     'event',
     mongoose.Schema(
@@ -7,7 +7,7 @@ module.exports = mopngoose =>{
         description: String,
         active: Boolean
       },
-      {timestamps} //tells Mongoose to automatically manage createdAt and updatedAt
+      // {timestamps} //tells Mongoose to automatically manage createdAt and updatedAt
     )
   );
   return Event;

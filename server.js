@@ -1,19 +1,20 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
 // connect to database
-const db = require('./backend/models');
-db.mongoose.connect(REACT_APP_DB_URL,
+const db = require('./backend/models/mongoose');
+db.mongoose.connect(process.env.REACT_APP_DB_URL,
 {
  useNewUrlParser: true,
- useCreateIndex: true,
+//  useCreateIndex: true,
  useUnifiedTopology: true,
- useFindAndModify: false, 
+//  useFindAndModify: false, 
 }).then(()=>{
-  console.log('Connected to the DB');
+  console.log('Connected to the DB!');
 }).catch(error => {
   console.log('Cannot connect to DB!', error);
   process.exit();
@@ -32,8 +33,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 // middleware for handling sample api routes
-app.use('/api/v1', require('./routes/api/crud'));
-
+// app.use('/api/v1', require('./backend/routes/api/crud'));
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to CityPassport application." });
+});
+        
 // create static assets from react code for production only
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static( 'client/build' ));

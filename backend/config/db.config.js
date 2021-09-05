@@ -1,3 +1,3 @@
 module.exports = {
-  url: REACT_APP_DB_URL
+  url: process.env.REACT_APP_DB_URL
 };
