@@ -5,6 +5,7 @@ mongoose.Promise = global.Promise;
 const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.event = require('./event.model.js')(mongoose);
+db.event = require('./event.model');
+// db.event = require('./event.model.js')(mongoose);
 
 module.exports = db;

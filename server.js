@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 
 // connect to database
-const db = require('./backend/models/mongoose');
+const db = require('./backend/models/index');
 db.mongoose.connect(process.env.REACT_APP_DB_URL,
 {
  useNewUrlParser: true,
@@ -28,6 +28,9 @@ app.use(cors());
 
 // express middleware handling the body parsing 
 app.use(express.json());
+
+const eventRoute = require('./backend/routes/event.routes');
+app.use('/v1', eventRoute);
 
 // express middleware handling the form parsing
 app.use(express.urlencoded({extended: false}));
